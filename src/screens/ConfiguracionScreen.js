@@ -6,7 +6,7 @@ import { useTema } from '../context/TemaContext';
 
 export default function ConfiguracionScreen() {
   const [config, setConfig] = useState({ sonido: true, vibracion: true, tema: 'claro' });
-  const { tema, setModoOscuro } = useTema();
+  const { tema, setModoOscuro, setSonidoActivo } = useTema();
 
   // Cargar las preferencias guardadas al abrir la pantalla
   useEffect(() => {
@@ -15,9 +15,10 @@ export default function ConfiguracionScreen() {
       const configCompleta = { sonido: true, vibracion: true, tema: 'claro', ...confGuardada };
       setConfig(configCompleta);
       setModoOscuro(configCompleta.tema === 'oscuro');
+      setSonidoActivo(configCompleta.sonido === true);
     };
     cargar();
-  }, []);
+  }, [setModoOscuro, setSonidoActivo]);
 
   // Manejador para los interruptores
   const toggleSwitch = async (clave) => {
@@ -26,6 +27,7 @@ export default function ConfiguracionScreen() {
       : { ...config, [clave]: !config[clave] };
     setConfig(nuevaConfig);
     if (clave === 'tema') setModoOscuro(nuevaConfig.tema === 'oscuro');
+    if (clave === 'sonido') setSonidoActivo(nuevaConfig.sonido);
     await guardarConfiguracion(nuevaConfig);
   };
 

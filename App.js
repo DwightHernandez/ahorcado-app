@@ -3,6 +3,7 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/
 import { StatusBar } from 'expo-status-bar';
 import AppNavigator from './src/navigation/AppNavigator';
 import { TemaProvider, useTema } from './src/context/TemaContext';
+import MusicaFondo from './src/components/MusicaFondo';
 
 function NavegacionConTema() {
   const { tema, modoOscuro } = useTema();
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <TemaProvider>
       <StatusBar hidden />
+      <MusicaFondo />
       <NavegacionConTema />
     </TemaProvider>
   );
