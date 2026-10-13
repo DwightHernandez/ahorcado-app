@@ -125,7 +125,8 @@ export default function JuegoScreen({ navigation, route }) {
         palabra={estado.palabra}
         puntaje={estado.puntaje}
         onJugarDeNuevo={iniciarPartida}
-        onMenu={() => navigation.navigate('Inicio')}
+        onMenu={() => navigation.navigate('Categoria', { jugador })}
+        onInicio={() => navigation.navigate('Inicio')}
       />
     </SafeAreaView>
   );
