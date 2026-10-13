@@ -4,15 +4,14 @@ Aplicación móvil desarrollada como proyecto universitario de Ingeniería de Si
 
 ## Capturas de pantalla
 
-Agrega las capturas en `docs/screenshots/` y actualiza las rutas cuando estén disponibles.
 
 | Inicio | Selección de categoría | Partida |
 | --- | --- | --- |
-| ![Pantalla de inicio](docs/screenshots/inicio.jpeg) | ![Selección de categoría](docs/screenshots/categorias.jpeg) | ![Pantalla de juego](docs/screenshots/juego.jpeg) |
+| ![Pantalla de inicio](docs/Screenshots/inicio.jpeg) | ![Selección de categoría](docs/Screenshots/categorias.jpeg) | ![Pantalla de juego](docs/Screenshots/juego.jpeg) |
 
 | Estadísticas | Configuración |
 | --- | --- |
-| ![Estadísticas](docs/screenshots/estadisticas.jpeg) | ![Configuración](docs/screenshots/configuracion.jpeg) |
+| ![Estadísticas](docs/Screenshots/estadisticas.jpeg) | ![Configuración](docs/Screenshots/configuracion.jpeg) |
 
 ## Características principales
 
