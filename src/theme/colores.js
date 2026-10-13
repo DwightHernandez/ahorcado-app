@@ -1,23 +1,22 @@
-// src/theme/colores.js
 export const colores = {
   claro: {
-    fondo: '#FFFFFF',
-    texto: '#1E1E1E',
-    primario: '#2196F3',     // Azul para botones principales
-    acierto: '#4CAF50',      // Verde para letras correctas
-    error: '#F44336',        // Rojo para letras incorrectas
-    teclaHabilitada: '#E0E0E0',
-    teclaDeshabilitada: '#9E9E9E',
-    borde: '#CCCCCC'
+    fondo: '#F5F7FC',
+    texto: '#202844',
+    primario: '#6558F5',
+    acierto: '#20A77A',
+    error: '#E85D75',
+    teclaHabilitada: '#FFFFFF',
+    teclaDeshabilitada: '#E6E9F2',
+    borde: '#E3E7F0',
   },
   oscuro: {
-    fondo: '#121212',
-    texto: '#FFFFFF',
-    primario: '#90CAF9',
-    acierto: '#81C784',
-    error: '#E57373',
-    teclaHabilitada: '#424242',
-    teclaDeshabilitada: '#212121',
-    borde: '#333333'
-  }
+    fondo: '#10131E',
+    texto: '#F3F5FF',
+    primario: '#9B8CFF',
+    acierto: '#4DD4AC',
+    error: '#FF7189',
+    teclaHabilitada: '#1D2434',
+    teclaDeshabilitada: '#343A4B',
+    borde: '#30394D',
+  },
 };

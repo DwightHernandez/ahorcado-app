@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import AppNavigator from './src/navigation/AppNavigator';
 import { TemaProvider, useTema } from './src/context/TemaContext';
 import MusicaFondo from './src/components/MusicaFondo';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function NavegacionConTema() {
   const { tema, modoOscuro } = useTema();
@@ -28,10 +29,12 @@ function NavegacionConTema() {
 
 export default function App() {
   return (
-    <TemaProvider>
-      <StatusBar hidden />
-      <MusicaFondo />
-      <NavegacionConTema />
-    </TemaProvider>
+    <SafeAreaProvider>
+      <TemaProvider>
+        <StatusBar hidden />
+        <MusicaFondo />
+        <NavegacionConTema />
+      </TemaProvider>
+    </SafeAreaProvider>
   );
 }

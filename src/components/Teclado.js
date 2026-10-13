@@ -1,70 +1,68 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTema } from '../context/TemaContext';
 
-const LETRAS = [
-  'A','B','C','D','E','F','G','H','I',
-  'J','K','L','M','N','Ñ','O','P','Q',
-  'R','S','T','U','V','W','X','Y','Z'
-];
+const FILAS = ['QWERTYUIOP', 'ASDFGHJKLÑ', 'ZXCVBNM'];
 
-export default function Teclado({ letrasAcertadas, letrasFalladas, onPressLetra }) {
-  const { tema } = useTema();
-
-  const obtenerEstiloTecla = (letra) => {
-    if (letrasAcertadas.includes(letra)) return { backgroundColor: tema.acierto };
-    if (letrasFalladas.includes(letra)) return { backgroundColor: tema.error };
-    return { backgroundColor: tema.teclaHabilitada };
-  };
-
-  const obtenerEstiloTexto = (letra) => {
-    if (letrasAcertadas.includes(letra) || letrasFalladas.includes(letra)) {
-      return { color: '#FFF' }; // Texto blanco para letras usadas
-    }
-    return { color: tema.texto };
-  };
+export default function Teclado({ letrasAcertadas, letrasFalladas, onPressLetra, bloqueado = false }) {
+  const { tema, modoOscuro } = useTema();
 
   return (
-    <View style={styles.contenedor}>
-      {LETRAS.map((letra) => {
-        const estaUsada = letrasAcertadas.includes(letra) || letrasFalladas.includes(letra);
+    <View style={styles.contenedor} accessibilityLabel="Teclado del juego">
+      {FILAS.map((fila, indice) => (
+        <View key={fila} style={[styles.fila, indice === 1 && styles.filaMedia, indice === 2 && styles.filaInferior]}>
+          {[...fila].map((letra) => {
+            const acertada = letrasAcertadas.includes(letra);
+            const fallada = letrasFalladas.includes(letra);
+            const usada = acertada || fallada;
+            const colorFondo = acertada ? tema.acierto : fallada ? tema.error : tema.teclaHabilitada;
+            const colorTexto = usada ? (modoOscuro ? tema.fondo : '#FFFFFF') : tema.texto;
 
-        return (
-          <Pressable
-            key={letra}
-            style={[styles.tecla, obtenerEstiloTecla(letra)]}
-            onPress={() => onPressLetra(letra)}
-            disabled={estaUsada} // Deshabilita letras usadas (RF-07)
-          >
-            <Text style={[styles.textoTecla, obtenerEstiloTexto(letra)]}>{letra}</Text>
-          </Pressable>
-        );
-      })}
+            return (
+              <Pressable
+                key={letra}
+                accessibilityRole="button"
+                accessibilityLabel={`Letra ${letra}${acertada ? ', correcta' : fallada ? ', incorrecta' : ''}`}
+                accessibilityState={{ disabled: usada || bloqueado }}
+                disabled={usada || bloqueado}
+                onPress={() => onPressLetra(letra)}
+                android_ripple={{ color: '#FFFFFF33', borderless: false }}
+                style={({ pressed }) => [
+                  styles.tecla,
+                  { backgroundColor: colorFondo },
+                  pressed && styles.teclaPresionada,
+                  bloqueado && styles.teclaBloqueada,
+                ]}
+              >
+                <Text style={[styles.textoTecla, { color: colorTexto }]}>{letra}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  contenedor: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    width: '100%',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    gap: 6,
-  },
+  contenedor: { width: '100%', maxWidth: 480, gap: 8, paddingHorizontal: 2 },
+  fila: { flexDirection: 'row', justifyContent: 'center', gap: 5 },
+  filaMedia: { paddingHorizontal: '4%' },
+  filaInferior: { paddingHorizontal: '13%' },
   tecla: {
-    // Área táctil de al menos 48x48 dp (RNF-04)[cite: 8]
-    width: 40,
-    height: 44,
-    justifyContent: 'center',
+    flex: 1,
+    height: 46,
+    maxWidth: 44,
+    minWidth: 0,
     alignItems: 'center',
-    borderRadius: 8,
-    elevation: 2, // Sombra en Android
+    justifyContent: 'center',
+    borderRadius: 13,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#FFFFFF22',
+    overflow: 'hidden',
+    elevation: 2,
   },
-  textoTecla: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  }
+  teclaPresionada: { transform: [{ scale: 0.94 }], opacity: 0.82 },
+  teclaBloqueada: { opacity: 0.68 },
+  textoTecla: { fontSize: 16, fontWeight: '800' },
 });
