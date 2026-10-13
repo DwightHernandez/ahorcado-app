@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTema } from '../context/TemaContext';
 
-export default function ModalResultado({ visible, estadoPartida, palabra, puntaje, onJugarDeNuevo, onMenu }) {
+export default function ModalResultado({ visible, estadoPartida, palabra, puntaje, onJugarDeNuevo, onMenu, onInicio }) {
   const { tema, modoOscuro } = useTema();
   const esVictoria = estadoPartida === 'ganado';
   const acento = esVictoria ? tema.acierto : tema.error;
@@ -48,6 +48,13 @@ export default function ModalResultado({ visible, estadoPartida, palabra, puntaj
               style={({ pressed }) => [styles.botonSecundario, { borderColor: tema.borde }, pressed && styles.presionado]}
             >
               <Text style={[styles.textoBotonSecundario, { color: tema.texto }]}>Volver al menú</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              onPress={onInicio}
+              style={({ pressed }) => [styles.botonSecundario, { borderColor: tema.borde }, pressed && styles.presionado]}
+            >
+              <Text style={[styles.textoBotonSecundario, { color: tema.texto }]}>Volver a inicio</Text>
             </Pressable>
           </View>
         </View>
