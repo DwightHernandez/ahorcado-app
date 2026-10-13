@@ -52,6 +52,23 @@ export default function JuegoScreen({ navigation, route }) {
     jugarLetra(letra);
   };
 
+  const volverASeleccion = () => {
+    navigation.reset({
+      index: 1,
+      routes: [
+        { name: 'Inicio' },
+        { name: 'Categoria', params: { jugador } },
+      ],
+    });
+  };
+
+  const volverAInicio = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Inicio' }],
+    });
+  };
+
   return (
     <SafeAreaView edges={['bottom']} style={[styles.safeArea, { backgroundColor: tema.fondo }]}>
       <ScrollView
@@ -125,8 +142,8 @@ export default function JuegoScreen({ navigation, route }) {
         palabra={estado.palabra}
         puntaje={estado.puntaje}
         onJugarDeNuevo={iniciarPartida}
-        onMenu={() => navigation.navigate('Categoria', { jugador })}
-        onInicio={() => navigation.navigate('Inicio')}
+        onMenu={volverASeleccion}
+        onInicio={volverAInicio}
       />
     </SafeAreaView>
   );
