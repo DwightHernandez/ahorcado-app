@@ -1,27 +1,35 @@
-// App.js
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+import AppNavigator from './src/navigation/AppNavigator';
+import { TemaProvider, useTema } from './src/context/TemaContext';
 
-export default function App() {
+function NavegacionConTema() {
+  const { tema, modoOscuro } = useTema();
+  const temaNavegacion = {
+    ...(modoOscuro ? DarkTheme : DefaultTheme),
+    colors: {
+      ...(modoOscuro ? DarkTheme.colors : DefaultTheme.colors),
+      primary: tema.primario,
+      background: tema.fondo,
+      card: tema.fondo,
+      text: tema.texto,
+      border: tema.borde,
+    },
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.texto}>
-        ¡El Ahorcado Móvil está listo para iniciar!
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer theme={temaNavegacion}>
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  texto: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-});
+export default function App() {
+  return (
+    <TemaProvider>
+      <StatusBar hidden />
+      <NavegacionConTema />
+    </TemaProvider>
+  );
+}
