@@ -8,11 +8,11 @@ Agrega las capturas en `docs/screenshots/` y actualiza las rutas cuando estén d
 
 | Inicio | Selección de categoría | Partida |
 | --- | --- | --- |
-| ![Pantalla de inicio](docs/screenshots/inicio.png) | ![Selección de categoría](docs/screenshots/categorias.png) | ![Pantalla de juego](docs/screenshots/juego.png) |
+| ![Pantalla de inicio](docs/screenshots/inicio.jpeg) | ![Selección de categoría](docs/screenshots/categorias.jpeg) | ![Pantalla de juego](docs/screenshots/juego.jpeg) |
 
 | Estadísticas | Configuración |
 | --- | --- |
-| ![Estadísticas](docs/screenshots/estadisticas.png) | ![Configuración](docs/screenshots/configuracion.png) |
+| ![Estadísticas](docs/screenshots/estadisticas.jpeg) | ![Configuración](docs/screenshots/configuracion.jpeg) |
 
 ## Características principales
 
