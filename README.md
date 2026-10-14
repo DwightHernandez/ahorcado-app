@@ -95,6 +95,14 @@ El archivo `eas.json` incluye el perfil `preview` configurado para generar un AP
 
 El proyecto requiere `eas.json` con un perfil de compilación. Al finalizar, EAS Build proporciona un enlace para descargar el APK. La primera compilación puede solicitar que se configure el proyecto o las credenciales de Android.
 
+### Instalar la compilación disponible
+
+Escanea este código QR con la cámara del teléfono para abrir la página del build en EAS. Desde allí, selecciona la opción de descarga o instalación del APK.
+
+![Código QR para abrir la página de instalación del APK](assets/images/qrcode.png)
+
+[Abrir la página del build en Expo](https://expo.dev/accounts/kedihm/projects/ahorcado-app/builds/dfed66ff-6126-49ae-8c34-3340a7d5e1e5)
+
 ## Estructura general
 
 ```text
