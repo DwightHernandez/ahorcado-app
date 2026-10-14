@@ -63,6 +63,7 @@
     }
   },
   "expo": {
+    "icon": "./assets/images/ahorcado-icon.png",
     "android": {
       "package": "com.kedihm.ahorcadoapp"
     },
